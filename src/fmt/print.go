@@ -495,6 +495,13 @@ func (p *pp) fmtBytes(v []byte, verb rune, typeString string) {
 	}
 }
 
+// Printfln formats according to a format specifier and writes to standard
+// output with an appended newline (\n). It returns the number of bytes
+// written and any write error encountered.
+func Printfln(format string, a ...any) (n int, err error) {
+	return fmt.Printf(format+"\n", a...)
+}
+
 func (p *pp) fmtPointer(value reflect.Value, verb rune) {
 	var u uintptr
 	switch value.Kind() {
