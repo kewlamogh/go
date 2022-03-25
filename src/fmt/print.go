@@ -207,10 +207,11 @@ func Fprintf(w io.Writer, format string, a ...any) (n int, err error) {
 	return
 }
 
-// Printf formats according to a format specifier and writes to standard output.
-// It returns the number of bytes written and any write error encountered.
-func Printf(format string, a ...any) (n int, err error) {
-	return Fprintf(os.Stdout, format, a...)
+// Printfln formats according to a format specifier and writes to standard
+// output with an appended newline (\n). It returns the number of bytes
+// written and any write error encountered.
+func Printfln(format string, a ...any) (n int, err error) {
+	return fmt.Printf(format+"\n", a...)
 }
 
 // Sprintf formats according to a format specifier and returns the resulting string.
@@ -272,6 +273,10 @@ func Fprintln(w io.Writer, a ...any) (n int, err error) {
 // It returns the number of bytes written and any write error encountered.
 func Println(a ...any) (n int, err error) {
 	return Fprintln(os.Stdout, a...)
+}
+
+func Printfln(a ...any) (n int, err error) {
+	return Println(a, "\n")
 }
 
 // Sprintln formats using the default formats for its operands and returns the resulting string.
